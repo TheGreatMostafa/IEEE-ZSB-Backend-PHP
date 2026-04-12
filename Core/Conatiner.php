@@ -2,24 +2,17 @@
 
 namespace Core;
 
-use Exception;
+class Conatiner {
 
-class Container
-{
     protected $bindings = [];
 
-    public function bind($key, $resolver)
-    {
+    public function bind($key, $resolver) {
         $this->bindings[$key] = $resolver;
     }
 
-    /**
-     * @throws Exception
-     */
-    public function resolve($key)
-    {
+    public function resolve($key) {
         if (!array_key_exists($key, $this->bindings)) {
-            throw new Exception("No matching binding found for {$key}");
+            throw new \Exception("No matching binding for {$key}");
         }
 
         $resolver = $this->bindings[$key];
